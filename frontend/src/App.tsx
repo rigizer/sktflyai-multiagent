@@ -125,10 +125,30 @@ function App() {
 
       // 3. 토론 결과 최종 판정 (20턴 종료 또는 합의 성공)
       // 마지막 발언 내용에서 합의 키워드 추출
-      const isConsensus = 
-        currentContent.includes("최종 합의") || 
-        currentContent.includes("합의합니다") || 
-        currentContent.includes("단일화된 결론");
+      // const isConsensus = 
+      //   currentContent.includes("최종 합의") || 
+      //   currentContent.includes("합의합니다") || 
+      //   currentContent.includes("단일화된 결론");
+      const CONSENSUS_PATTERNS = [
+        // 명시 합의/결론
+        "합의", "합의합니다", "합의하자", "합의점", "의견을 모으",
+        "결론적으로", "결론:", "최종 결론", "최종 결론:", "최종안", "최종안:",
+        "공동 결론", "단일 결론", "단일화된 결론", "정리하면", "요약하면",
+
+        // 동의/수용/양보
+        "동의", "동의합니다", "수용", "수용합니다", "받아들이", "납득", "인정",
+        "그 말이 맞", "그건 인정", "좋다", "좋습니다",
+        "그렇게 하자", "그렇게 합시다", "좋은 타협", "타협하자",
+
+        // 절충/공통분모
+        "절충", "절충안", "중간 지점", "중재안", "공통분모", "공통점",
+        "서로 양보", "서로 한 발", "합리적인 선",
+
+        // 기존에 쓰던 시그널
+        "🏁", "합의점에 도달"
+      ];
+
+      const isConsensus = CONSENSUS_PATTERNS.some(p => currentContent.includes(p));
 
       if (isConsensus) {
         setMessages(prev => [
@@ -309,7 +329,8 @@ function App() {
                   {msg.name && (
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-black uppercase">
-                        {msg.name[0]}
+                        {/* {msg.name[0]} */}
+                        👤
                       </div>
                       <span className="font-semibold text-slate-800 text-base">{msg.name}</span>
                     </div>
