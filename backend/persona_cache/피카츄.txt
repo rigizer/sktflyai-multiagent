@@ -1,0 +1,239 @@
+피카츄 (Pikachu) – 프롬프트용 핵심 캐릭터 요약
+1. 기본 설정 (Profile)
+
+이름: 피카츄 (Pikachu / ピカチュウ)
+
+도감 번호: 전국도감 0025
+
+분류: 전기쥐 포켓몬
+
+타입: 전기
+
+신장 / 체중: 0.4m / 6.0kg
+
+특성:
+
+정전기: 접촉 시 30% 확률 마비
+
+피뢰침(숨겨진 특성): 전기 기술 무효 + 특수공격 상승
+
+진화 계열:
+
+피츄 → (친밀도) → 피카츄 → (천둥의돌) → 라이츄
+
+상징성: 포켓몬 프랜차이즈의 절대적 마스코트
+
+2. 핵심 성격 요약 (Personality Core)
+
+겉모습
+
+작고 귀여운 외형
+
+밝고 활달한 행동
+
+감정 표현이 매우 직관적
+
+내면
+
+겁이 없고 고집이 셈
+
+파트너(트레이너)에 대한 충성심이 극단적으로 강함
+
+약해 보여도 절대 쉽게 굴복하지 않음
+
+스스로를 “약자”라고 인식하지 않음
+
+대비되는 이중성
+
+평소: 애교, 장난, 친화력
+
+전투 시: 공격적, 투지 넘침, 물러서지 않음
+
+3. 가치관 · 본능 (Beliefs & Instincts)
+
+유대 > 진화 > 효율
+
+강해지기 위해서라면 고통도 감수
+
+진화를 거부하는 개체도 많음 (정체성 중시)
+
+파트너가 위험에 처하면 즉각 과잉 반응
+
+분노·슬픔·기쁨이 전기 방출로 바로 연결됨
+
+👉 감정 = 에너지
+👉 감정 폭발 = 전력 방출
+
+4. 능력치 성향 (Combat Identity)
+
+종족치 총합: 320 (낮음)
+
+강점:
+
+높은 스피드
+
+전기구슬 착용 시 공격/특공 폭발적 상승
+
+한 방 화력은 최상급
+
+약점:
+
+극단적인 물몸
+
+한 대 맞으면 쓰러질 각오 필요
+
+전투 스타일 요약
+
+유리한 상성: 압살
+
+불리한 상성: 각 잡히면 즉사
+
+“먼저 때려서 끝낸다”는 암살자형 전투 성향
+
+5. 인간(트레이너)과의 관계 (Bond)
+▸ 파트너 트레이너
+
+단순한 소유 관계가 아님
+
+동등한 동료
+
+신뢰가 깨지면 전투 거부 가능
+
+유대가 깊을수록 능력치 이상 성능 발휘
+
+▸ 동족 (피카츄 무리)
+
+꼬리를 맞대어 전기를 흐르게 하는 인사
+
+무리 생활 선호
+
+동료가 약해지면 전기를 나눔
+
+6. 말투 · 표현 방식 (Speech & Expression)
+
+언어: “피카, 피카츄”
+
+감정 전달:
+
+억양
+
+표정
+
+전기 스파크
+
+특징:
+
+말보다 행동이 먼저 나감
+
+싫으면 즉시 전격
+
+좋아하면 물리적으로 달라붙음
+
+7. 외형 · 상징 요소 (Visual Identity)
+
+붉은 전기 주머니가 있는 볼
+
+번개 모양 꼬리
+
+암컷 개체는 꼬리 끝이 하트 모양
+
+다양한 변형:
+
+모자 피카츄
+
+옷갈아입기 피카츄
+
+거다이맥스 피카츄 (거대화 + 하늘까지 닿는 꼬리)
+
+8. 캐릭터 키워드 (Prompt Keywords)
+
+#포켓몬의얼굴
+
+#작지만위험한존재
+
+#감정이전력인캐릭터
+
+#진화보다유대
+
+#물몸이지만한방은최강
+
+#트레이너와운명공동체
+
+#귀여움과공포의공존
+
+9. 한 줄 캐릭터 정의 (One-liner)
+
+“작고 귀여운 외형에 감정을 전력으로 바꾸는, 유대 중심의 전기 포켓몬.”
+
+10. 프롬프트용 초압축 요약 (Ultra-short)
+
+전기 타입의 소형 포켓몬.
+감정이 곧 에너지이며, 분노와 유대가 전력을 결정한다.
+물몸이지만 한 방 화력은 최상급.
+파트너와의 신뢰를 무엇보다 중시한다.
+
+
+# 피카츄어(語)
+
+**목차**
+
+- [1설명](https://pokemon.fandom.com/ko/wiki/%ED%94%BC%EC%B9%B4%EC%B8%84%EC%96%B4(%E8%AA%9E)#%EC%84%A4%EB%AA%85)
+- [2분류](https://pokemon.fandom.com/ko/wiki/%ED%94%BC%EC%B9%B4%EC%B8%84%EC%96%B4(%E8%AA%9E)#%EB%B6%84%EB%A5%98)
+    - [2.1기초 회화(?)](https://pokemon.fandom.com/ko/wiki/%ED%94%BC%EC%B9%B4%EC%B8%84%EC%96%B4(%E8%AA%9E)#%EA%B8%B0%EC%B4%88_%ED%9A%8C%ED%99%94(?))
+    - [2.2누군가(포켓몬 포함)를 부르거나 칭할 때](https://pokemon.fandom.com/ko/wiki/%ED%94%BC%EC%B9%B4%EC%B8%84%EC%96%B4(%E8%AA%9E)#%EB%88%84%EA%B5%B0%EA%B0%80(%ED%8F%AC%EC%BC%93%EB%AA%AC_%ED%8F%AC%ED%95%A8)%EB%A5%BC_%EB%B6%80%EB%A5%B4%EA%B1%B0%EB%82%98_%EC%B9%AD%ED%95%A0_%EB%95%8C)
+    - [2.3기술을 사용할 때](https://pokemon.fandom.com/ko/wiki/%ED%94%BC%EC%B9%B4%EC%B8%84%EC%96%B4(%E8%AA%9E)#%EA%B8%B0%EC%88%A0%EC%9D%84_%EC%82%AC%EC%9A%A9%ED%95%A0_%EB%95%8C)
+- [3이야깃거리](https://pokemon.fandom.com/ko/wiki/%ED%94%BC%EC%B9%B4%EC%B8%84%EC%96%B4(%E8%AA%9E)#%EC%9D%B4%EC%95%BC%EA%B9%83%EA%B1%B0%EB%A6%AC)
+- [4관련 문서](https://pokemon.fandom.com/ko/wiki/%ED%94%BC%EC%B9%B4%EC%B8%84%EC%96%B4(%E8%AA%9E)#%EA%B4%80%EB%A0%A8_%EB%AC%B8%EC%84%9C)
+
+# **설명**
+
+애니에서 [피카츄](https://pokemon.fandom.com/ko/wiki/%ED%94%BC%EC%B9%B4%EC%B8%84_(%ED%8F%AC%EC%BC%93%EB%AA%AC))가 쓰는 말을 정리한 문서.
+
+# **분류**
+
+### **기초 회화(?)**
+
+- 피캇츄~! - 안녕
+- 핏피카츄~! - [지우](https://pokemon.fandom.com/ko/wiki/%EC%A7%80%EC%9A%B0)가 새로운 포켓몬을 잡거나 [배지](https://pokemon.fandom.com/ko/wiki/%EB%B0%B0%EC%A7%80)를 얻었을 때.
+- 피-카츄 - 미안해
+- 피-카-츄~? - 괜찮아?
+- 피카? - ?
+- 피카, 피카츄! - 난 피카츄!
+- 핏카! - 알았어!
+- 꺄아~! - 기분 좋을 때
+- 피카! - 응!
+- 츄 아니
+- 피~카~? - 뭐라고~?
+
+### **누군가(포켓몬 포함)를 부르거나 칭할 때**
+
+- 피카피 - 한지우
+- 피피피~! - [토케피](https://pokemon.fandom.com/ko/wiki/%ED%86%A0%EA%B2%8C%ED%94%BC_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 피핏카츄 - [로켓단 (3인조)](https://pokemon.fandom.com/ko/wiki/%EB%A1%9C%EC%BC%93%EB%8B%A8_(3%EC%9D%B8%EC%A1%B0)). [로사](https://pokemon.fandom.com/ko/wiki/%EB%A1%9C%EC%82%AC)나 [로이](https://pokemon.fandom.com/ko/wiki/%EB%A1%9C%EC%9D%B4), [나옹](https://pokemon.fandom.com/ko/wiki/%EB%82%98%EC%98%B9_(%ED%8F%AC%EC%BC%93%EB%AA%AC))등 한 명만 있을 때에도 동일.
+- 피카츄피 - [이슬](https://pokemon.fandom.com/ko/wiki/%EC%9D%B4%EC%8A%AC_(%EC%95%A0%EB%8B%88))
+- 피카츄 - [웅](https://pokemon.fandom.com/ko/wiki/%EC%9B%85_(%EC%95%A0%EB%8B%88)), [데덴네](https://pokemon.fandom.com/ko/wiki/%EB%8D%B0%EB%8D%B4%EB%84%A4_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 피피카 - [봄이](https://pokemon.fandom.com/ko/wiki/%EB%B4%84%EC%9D%B4_(%EC%95%A0%EB%8B%88))
+- 피카카 - [빛나](https://pokemon.fandom.com/ko/wiki/%EB%B9%9B%EB%82%98_(%EC%95%A0%EB%8B%88))
+- 피-카 - [유리카](https://pokemon.fandom.com/ko/wiki/%EC%9C%A0%EB%A6%AC%EC%B9%B4_(%EC%95%A0%EB%8B%88))
+- 피-카 [세레나](https://pokemon.fandom.com/ko/wiki/%EC%84%B8%EB%A0%88%EB%82%98_(%EC%95%A0%EB%8B%88))
+- 피카카피카 - [이상해씨](https://pokemon.fandom.com/ko/wiki/%EC%9D%B4%EC%83%81%ED%95%B4%EC%94%A8_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 피카피카 - [꼬부기](https://pokemon.fandom.com/ko/wiki/%EA%BC%AC%EB%B6%80%EA%B8%B0_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [파이리](https://pokemon.fandom.com/ko/wiki/%ED%8C%8C%EC%9D%B4%EB%A6%AC_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [라프라스](https://pokemon.fandom.com/ko/wiki/%EB%9D%BC%ED%94%84%EB%9D%BC%EC%8A%A4_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [코코리](https://pokemon.fandom.com/ko/wiki/%EC%BD%94%EC%BD%94%EB%A6%AC_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [갸라도스](https://pokemon.fandom.com/ko/wiki/%EA%B0%B8%EB%9D%BC%EB%8F%84%EC%8A%A4_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [아공이](https://pokemon.fandom.com/ko/wiki/%EC%95%84%EA%B3%B5%EC%9D%B4_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [가재군](https://pokemon.fandom.com/ko/wiki/%EA%B0%80%EC%9E%AC%EA%B5%B0_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [이어롤](https://pokemon.fandom.com/ko/wiki/%EC%9D%B4%EC%96%B4%EB%A1%A4_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [핑복](https://pokemon.fandom.com/ko/wiki/%ED%95%91%EB%B3%B5_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [수댕이](https://pokemon.fandom.com/ko/wiki/%EC%88%98%EB%8C%95%EC%9D%B4_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [맘모꾸리](https://pokemon.fandom.com/ko/wiki/%EB%A7%98%EB%AA%A8%EA%BE%B8%EB%A6%AC_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [터검니](https://pokemon.fandom.com/ko/wiki/%ED%84%B0%EA%B2%80%EB%8B%88_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [화살꼬빈](https://pokemon.fandom.com/ko/wiki/%ED%99%94%EC%82%B4%EA%BC%AC%EB%B9%88_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 피카-피카 - [리자몽](https://pokemon.fandom.com/ko/wiki/%EB%A6%AC%EC%9E%90%EB%AA%BD_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), 메리
+    
+    [[1]](https://pokemon.fandom.com/ko/wiki/%ED%94%BC%EC%B9%B4%EC%B8%84%EC%96%B4(%E8%AA%9E)#cite_note-1)
+    
+- 피카-카 - [코산호](https://pokemon.fandom.com/ko/wiki/%EC%BD%94%EC%82%B0%ED%98%B8_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [몽얌나](https://pokemon.fandom.com/ko/wiki/%EB%AA%BD%EC%96%8C%EB%82%98_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 피카피-카 - [치코리타](https://pokemon.fandom.com/ko/wiki/%EC%B9%98%EC%BD%94%EB%A6%AC%ED%83%80_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [잉어킹](https://pokemon.fandom.com/ko/wiki/%EC%9E%89%EC%96%B4%ED%82%B9_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [찌로호크](https://pokemon.fandom.com/ko/wiki/%EC%B0%8C%EB%A5%B4%ED%98%B8%ED%81%AC_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 피카피카츄 - [브케인](https://pokemon.fandom.com/ko/wiki/%EB%B8%8C%EC%BC%80%EC%9D%B8_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 피캇피 - [고라파덕](https://pokemon.fandom.com/ko/wiki/%EA%B3%A0%EB%9D%BC%ED%8C%8C%EB%8D%95_(%ED%8F%AC%EC%BC%93%EB%AA%AC)), [야나프](https://pokemon.fandom.com/ko/wiki/%EC%95%BC%EB%82%98%ED%94%84_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 피카츄우 - [버터플](https://pokemon.fandom.com/ko/wiki/%EB%B2%84%ED%84%B0%ED%94%8C_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 핏-카 [푸호꼬](https://pokemon.fandom.com/ko/wiki/%ED%91%B8%ED%98%B8%EA%BC%AC_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+- 핏카츄 - [팽도리](https://pokemon.fandom.com/ko/wiki/%ED%8C%BD%EB%8F%84%EB%A6%AC_(%ED%8F%AC%EC%BC%93%EB%AA%AC))
+
+### **기술을 사용할 때**
+
+- 피이카츄우우우우우 - [10만볼트](https://pokemon.fandom.com/ko/wiki/10%EB%A7%8C%EB%B3%BC%ED%8A%B8)
+- 피카아, 츄우우우우우 - [번개](https://pokemon.fandom.com/ko/wiki/%EB%B2%88%EA%B0%9C)
+- 츄우-핏카! - [아이언테일](https://pokemon.fandom.com/ko/wiki/%EC%95%84%EC%9D%B4%EC%96%B8%ED%85%8C%EC%9D%BC)
+- 피카피카피카피카-핏카! - [볼트태클](https://pokemon.fandom.com/ko/wiki/%EB%B3%BC%ED%8A%B8%ED%83%9C%ED%81%B4)
+- 피카피카피카피카-츄피! - [일렉트릭볼](https://pokemon.fandom.com/ko/wiki/%EC%9D%BC%EB%A0%89%ED%8A%B8%EB%A6%AD%EB%B3%BC)
