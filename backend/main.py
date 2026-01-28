@@ -121,12 +121,17 @@ async def debate_stream(state: DebateState):
         async for event in app_graph.astream_events(input_state, config=config, version="v1"):
             kind = event["event"]
             
-            # [신호 1] 모델이 발언을 시작할 때 (누가 말하는지 알림)
-            if kind == "on_chat_model_start":
-                # 에이전트 노드에서 설정한 캐릭터 이름을 가져옵니다.
-                speaker_name = event.get("tags", ["Unknown"])[0] 
-                # 또는 노드 이름을 통해 판별
-                yield f"data: {json.dumps({'type': 'speaker_start', 'name': speaker_name})}\n\n"
+            # # [신호 1] 모델이 발언을 시작할 때 (누가 말하는지 알림)
+            # if kind == "on_chat_model_start":
+            #     speaker_name = event["data"]["input"].get("next_speaker", "Unknown")
+            #     yield f"data: {json.dumps({'type': 'speaker_start', 'name': speaker_name})}\n\n"
+
+            if kind == "on_chain_start":
+                # character_agent 노드가 시작될 때만
+                if event.get("name") == "character_agent":
+                    # 여기 input은 보통 그래프 state(dict)임
+                    speaker_name = event.get("data", {}).get("input", {}).get("next_speaker", "Unknown")
+                    yield f"data: {json.dumps({'type': 'speaker_start', 'name': speaker_name})}\n\n"
 
             # [신호 2] 글자가 생성될 때
             elif kind == "on_chat_model_stream":

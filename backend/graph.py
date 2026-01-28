@@ -42,8 +42,8 @@ def character_node(state: DebateState):
     # 최신 대화 15개만 유지 (TPM 관리 및 문맥 유지)
     recent_messages = state['messages'][-15:]
     
-    # gpt-4o-mini를 사용하여 속도와 비용, Rate Limit을 최적화합니다.
-    llm_mini = ChatOpenAI(model="gpt-4o-mini", temperature=0.8)
+    # gpt-5-mini를 사용하여 속도와 비용, Rate Limit을 최적화합니다.
+    llm_mini = ChatOpenAI(model="gpt-5-mini", temperature=0.8)
     response = llm_mini.invoke([SystemMessage(content=prompt)] + recent_messages)
     
     return {
