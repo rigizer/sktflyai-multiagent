@@ -7,7 +7,7 @@ import { characters } from './data/characters';
 import { DebateMessage } from './types/character';
 
 const MAX_SELECTIONS = 5;
-const API_BASE = 'http://localhost:8000';
+const API_BASE = '/api';
 
 function App() {
   const [selectedCharacters, setSelectedCharacters] = useState<Set<number>>(new Set());

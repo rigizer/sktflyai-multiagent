@@ -18,14 +18,6 @@ export const characters: Character[] = [
     slug: '유시진',
   },
   {
-    id: 3,
-    name: '지예은',
-    series: 'snl 일진/대가리 꽃밭',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsXVchL3wjWk7L3Y_pRPNV7entlgBy6rqFlw&s',
-    color: '#8b5cf6',
-    slug: null, // 캐시 없음
-  },
-  {
     id: 4,
     name: '도라에몽',
     series: '도라에몽',
@@ -58,35 +50,11 @@ export const characters: Character[] = [
     slug: '강호동',
   },
   {
-    id: 8,
-    name: '장첸',
-    series: '범죄도시',
-    image: 'https://cdn.ggilbo.com/news/photo/201809/548727_407652_310.gif',
-    color: '#10b981',
-    slug: null, // 캐시 없음
-  },
-  {
     id: 9,
     name: '안성재',
     series: '흑백요리사 심사위원',
     image: 'https://cdn.autotribune.co.kr/news/photo/202409/23316_97854_2458.png',
     color: '#ef4444',
     slug: '안성재',
-  },
-  {
-    id: 10,
-    name: '김상중',
-    series: '그것이 알고 싶다',
-    image: 'https://i.ytimg.com/vi/Xf0-lrEbqxc/maxresdefault.jpg',
-    color: '#60a5fa',
-    slug: null, // 캐시 없음
-  },
-  {
-    id: 11,
-    name: '나무늘보',
-    series: '주토피아',
-    image: 'https://mblogthumb-phinf.pstatic.net/MjAyMTA5MTZfNDEg/MDAxNjMxNzU2NzY4MDY4.U48t1RpQewAet92E30jgXGyF9pofj1pceKh3RsRsm5kg.5ea6DUChgvPlMi1YXy6Tq41anpBw2mK3CiFmwkMkeV8g.JPEG.ghkdwjdtka/IMG_4570.jpg?type=w800',
-    color: '#a855f7',
-    slug: null, // 캐시 없음
   },
 ];

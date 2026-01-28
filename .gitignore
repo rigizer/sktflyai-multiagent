@@ -205,3 +205,22 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Node.js specific
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.yarn/
+.next/ # For Next.js projects, if applicable
+out/ # Another common build output folder
+
+# Frontend specific
+.vite/ # Vite cache
+temp/
+tmp/
+coverage/ # Test coverage reports
+*.tsbuildinfo # TypeScript build info files
+.DS_Store # macOS specific, useful in any project
+
