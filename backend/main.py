@@ -1,8 +1,11 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from pydantic import BaseModel
 from typing import List, Optional
+import json
+import asyncio
 import os
 from dotenv import load_dotenv
 
@@ -105,6 +108,39 @@ async def debate_step(state: DebateState):
     except Exception as e:
         print(f"Error in graph execution: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/debate/stream")
+async def debate_stream(state: DebateState):
+    async def event_generator():
+        input_state = state.dict()
+        input_state['messages'] = convert_to_langchain_messages(input_state['messages'])
+        
+        # 재귀 제한을 턴 수에 맞춰 넉넉히 설정 (20턴이면 약 60회 방문)
+        config = {"recursion_limit": 100}
+
+        async for event in app_graph.astream_events(input_state, config=config, version="v1"):
+            kind = event["event"]
+            
+            # [신호 1] 모델이 발언을 시작할 때 (누가 말하는지 알림)
+            if kind == "on_chat_model_start":
+                # 에이전트 노드에서 설정한 캐릭터 이름을 가져옵니다.
+                speaker_name = event.get("tags", ["Unknown"])[0] 
+                # 또는 노드 이름을 통해 판별
+                yield f"data: {json.dumps({'type': 'speaker_start', 'name': speaker_name})}\n\n"
+
+            # [신호 2] 글자가 생성될 때
+            elif kind == "on_chat_model_stream":
+                content = event["data"]["chunk"].content
+                if content:
+                    yield f"data: {json.dumps({'type': 'token', 'content': content})}\n\n"
+            
+            # [신호 3] 특정 캐릭터의 발언이 끝났을 때
+            elif kind == "on_chat_model_end":
+                yield f"data: {json.dumps({'type': 'speaker_end'})}\n\n"
+
+        yield "data: [DONE]\n\n"
+
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 if __name__ == "__main__":
     import uvicorn

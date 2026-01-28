@@ -14,7 +14,7 @@ class DebateState(TypedDict):
     status: str  # "proceeding", "consensus", "conflict", "forced_stop"
 
 # 2. 모델 초기화
-llm = ChatOpenAI(model="gpt-5-mini", temperature=0.7)
+llm = ChatOpenAI(model="gpt-5-mini", temperature=0.8, streaming=True)
 
 # 3. 캐릭터 에이전트 노드
 def character_node(state: DebateState):
@@ -52,27 +52,52 @@ def character_node(state: DebateState):
     }
 
 def moderator_node(state: DebateState):
-    """토론의 흐름을 강제로 이어가게 만드는 모더레이터"""
-    messages = state['messages']
-    turn_count = state['turn_count']
+    """
+    토론의 흐름을 관리하고 발언 순서를 결정하는 중재자 노드입니다.
+    - 20턴 제한 적용
+    - 최소 5턴 진행 보장
+    - 순차적 발언자 로테이션
+    """
+    messages = state.get('messages', [])
+    turn_count = state.get('turn_count', 0)
+    participants = state.get('participants', [])
+    current_speaker = state.get('next_speaker', "")
+    
+    # 마지막 메시지 내용 확인 (합의 여부 판단용)
     last_msg = messages[-1].content if messages else ""
 
-    # 최소 5턴은 무조건 진행하도록 강제 (조기 종료 방지)
-    if turn_count < 5:
-        status = "proceeding"
-    elif any(k in last_msg for k in ["최종 합의합니다", "단일화된 결론:", "🏁"]):
-        status = "consensus"
-    elif turn_count >= 100:
+    # 1. 상태 결정 로직 (Priority 기반)
+    if turn_count >= 20:
+        # 20턴 도달 시 즉시 종료 (결론 미도출)
         status = "conflict"
+    elif turn_count < 5:
+        # 5턴 미만일 때는 합의 키워드가 있어도 무조건 진행
+        status = "proceeding"
+    elif any(k in last_msg for k in ["최종 합의합니다", "단일화된 결론:", "🏁", "합의점에 도달"]):
+        # 5턴 이상이고 합의 키워드 발견 시 성공 종료
+        status = "consensus"
     else:
+        # 그 외에는 토론 계속 진행
         status = "proceeding"
 
-    # 다음 발언자 순서 결정 (순차적)
-    names = [p['name'] for p in state['participants']]
-    curr_idx = names.index(state['next_speaker']) if state['next_speaker'] in names else -1
-    next_speaker = names[(curr_idx + 1) % len(names)]
-        
-    return {"next_speaker": next_speaker, "status": status}
+    # 2. 다음 발언자 결정 로직 (순차 순환)
+    names = [p['name'] for p in participants]
+    if not names:
+        # 참가자 명단이 비어있는 경우 예외 처리
+        return {"status": status, "next_speaker": ""}
+
+    if current_speaker in names:
+        # 현재 발언자 다음 인덱스의 사람을 지목
+        curr_idx = names.index(current_speaker)
+        next_speaker = names[(curr_idx + 1) % len(names)]
+    else:
+        # 첫 발언이거나 speaker가 지정되지 않은 경우 첫 번째 참가자부터 시작
+        next_speaker = names[0]
+
+    return {
+        "next_speaker": next_speaker, 
+        "status": status
+    }
 
 # 5. 그래프 구축
 workflow = StateGraph(DebateState)

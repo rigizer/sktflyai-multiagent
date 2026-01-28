@@ -11,7 +11,7 @@ import {
   BrainCircuit
 } from 'lucide-react';
 import { CHARACTER_LIST } from './constants';
-import type { Character, Message, DebateState } from './types';
+import type { Character, Message } from './types';
 
 function App() {
   // --- 상태 관리 ---
@@ -49,61 +49,72 @@ function App() {
 };
 
   const startDebate = async () => {
-    if (selectedSlugs.length < 2) return alert("최소 2명의 캐릭터를 선택해 주세요.");
-    if (!topic.trim()) return alert("토론 주제를 입력해 주세요.");
-
     setIsDebating(true);
-    setMessages([{ role: 'assistant', content: "⏳ 나무위키에서 캐릭터들의 페르소나를 정밀 분석 중입니다..." }]);
+    setMessages([]); // 초기화
+
+    // 1. 캐릭터 데이터 준비 (기존 동일)
+    const participants = await Promise.all(
+      selectedSlugs.map(async (slug) => {
+        const res = await axios.get(`http://localhost:8000/character/${slug}`);
+        return res.data;
+      })
+    );
+
+    const initialState = {
+      messages: [{ role: 'user', content: `주제: ${topic}` }],
+      participants,
+      next_speaker: "",
+      turn_count: 0,
+      topic,
+      status: 'proceeding'
+    };
 
     try {
-      // 1. 선택된 캐릭터들의 데이터(Persona) 백엔드에서 실시간 스크래핑
-      const participants = await Promise.all(
-        selectedSlugs.map(async (slug) => {
-          const res = await axios.get(`http://localhost:8000/character/${slug}`);
-          return res.data; 
-        })
-      );
+      // [중요] fetch를 단 한 번만 호출합니다. 백엔드가 20턴을 다 보내줄 것입니다.
+      const response = await fetch('http://localhost:8000/debate/stream', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(initialState),
+      });
 
-      let currentState: DebateState = {
-        messages: [{ role: 'user', content: `토론 주제: ${topic}` }],
-        participants: participants,
-        next_speaker: "",
-        turn_count: 0,
-        topic: topic,
-        status: 'proceeding'
-      };
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+      let currentContent = "";
 
-      setMessages(currentState.messages);
+      while (true) {
+        const { done, value } = await reader!.read();
+        if (done) break;
 
-      // 2. 토론 루프 실행 (최대 100턴)
-      while (currentState.status === 'proceeding' && currentState.turn_count < 100) {
-        // 현재 발언자 표시
-        setCurrentSpeaker(currentState.next_speaker || participants[0].name);
+        const chunk = decoder.decode(value);
+        const lines = chunk.split("\n\n");
 
-        const response = await axios.post('http://localhost:8000/debate/step', currentState);
-        currentState = response.data;
-        
-        // 메시지 상태 업데이트 (React가 변화를 감지하여 렌더링)
-        setMessages([...currentState.messages]);
-        
-        if (currentState.status !== 'proceeding') break;
-        
-        // 대화 가독성을 위한 인위적 지연 (0.8초)
-        await new Promise(r => setTimeout(r, 800));
+        for (const line of lines) {
+          if (!line.startsWith("data: ") || line.includes("[DONE]")) continue;
+          
+          const data = JSON.parse(line.replace("data: ", ""));
+
+          if (data.type === 'speaker_start') {
+            // 새로운 캐릭터가 말을 시작하면 새 메시지 박스 추가
+            currentContent = ""; 
+            setMessages(prev => [...prev, { role: 'assistant', name: data.name, content: "" }]);
+          } 
+          else if (data.type === 'token') {
+            // 현재 말하고 있는 캐릭터의 박스에 글자 추가
+            currentContent += data.content;
+            setMessages(prev => {
+              const updated = [...prev];
+              if (updated.length > 0) {
+                updated[updated.length - 1].content = currentContent;
+              }
+              return updated;
+            });
+          }
+        }
       }
-
-      if (currentState.status === 'consensus') {
-        setMessages(prev => [...prev, { role: 'assistant', content: "🏁 시스템: 캐릭터들이 합의에 도달하여 토론을 마칩니다." }]);
-      } else if (currentState.status === 'conflict') {
-        setMessages(prev => [...prev, { role: 'assistant', content: "⚠️ 시스템: 100턴이 경과하여 결론 없이 종료되었습니다." }]);
-      }
-
-    } catch (error) {
-      console.error(error);
-      alert("서버 연결에 실패했습니다. 백엔드(FastAPI)가 실행 중인지 확인하세요.");
+    } catch (e) {
+      console.error("Stream Error:", e);
     } finally {
       setIsDebating(false);
-      setCurrentSpeaker(null);
     }
   };
 
