@@ -62,19 +62,23 @@ def moderator_node(state: DebateState):
     turn_count = state.get('turn_count', 0)
     participants = state.get('participants', [])
     current_speaker = state.get('next_speaker', "")
+
+    consensus_keywords = [
+        "동의합", "맞는 말씀", "이해했습", "결론을 내리", 
+        "의견을 모으", "찬성합", "생각이 바뀌었"
+    ]
     
     # 마지막 메시지 내용 확인 (합의 여부 판단용)
     last_msg = messages[-1].content if messages else ""
 
     # 1. 상태 결정 로직 (Priority 기반)
-    if turn_count >= 20:
-        # 20턴 도달 시 즉시 종료 (결론 미도출)
+    if turn_count >= 10:
+        # 10턴 도달 시 즉시 종료 (결론 미도출)
         status = "conflict"
     elif turn_count < 5:
         # 5턴 미만일 때는 합의 키워드가 있어도 무조건 진행
         status = "proceeding"
-    elif any(k in last_msg for k in ["최종 합의합니다", "단일화된 결론:", "🏁", "합의점에 도달"]):
-        # 5턴 이상이고 합의 키워드 발견 시 성공 종료
+    elif any(k in last_msg for k in consensus_keywords) and turn_count >= 5:
         status = "consensus"
     else:
         # 그 외에는 토론 계속 진행

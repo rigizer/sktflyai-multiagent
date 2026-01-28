@@ -56,7 +56,7 @@ function App() {
     setMessages([]); 
 
     try {
-      // 1. 참여자 데이터 최종 수집
+      // 1. 캐릭터 데이터 가져오기
       const participants = await Promise.all(
         selectedSlugs.map(async (slug) => {
           const res = await axios.get(`http://localhost:8000/character/${slug}`);
@@ -73,7 +73,7 @@ function App() {
         status: 'proceeding'
       };
 
-      // 2. 스트리밍 연결 시작
+      // 2. 스트리밍 연결
       const response = await fetch('http://localhost:8000/debate/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -82,8 +82,10 @@ function App() {
 
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
-      let currentContent = "";
-      let lastSpeakerName = "";
+      
+      // [중요] 중복 방지를 위한 로컬 변수
+      let accumulatedContent = ""; 
+      let serverDeterminedStatus = "conflict"; 
 
       if (!reader) return;
 
@@ -101,17 +103,21 @@ function App() {
             const data = JSON.parse(line.replace("data: ", ""));
 
             if (data.type === 'speaker_start') {
-              currentContent = ""; 
-              lastSpeakerName = data.name;
+              // 새로운 발언자가 시작될 때 변수 초기화
+              accumulatedContent = ""; 
               setCurrentSpeaker(data.name);
               setMessages(prev => [...prev, { role: 'assistant', name: data.name, content: "" }]);
             } 
             else if (data.type === 'token') {
-              currentContent += data.content;
+              // [해결책] 루프 밖 변수에 먼저 더하고, 상태에는 그 값을 '대입'합니다.
+              accumulatedContent += data.content;
+              const currentSnapshot = accumulatedContent; // 현재까지의 전체 문장 캡처
+
               setMessages(prev => {
                 const updated = [...prev];
                 if (updated.length > 0) {
-                  updated[updated.length - 1].content = currentContent;
+                  // += 가 아닌 = 를 사용하여 Strict Mode에서의 중복 합산을 방지합니다.
+                  updated[updated.length - 1].content = currentSnapshot;
                 }
                 return updated;
               });
@@ -119,40 +125,32 @@ function App() {
             else if (data.type === 'speaker_end') {
               setCurrentSpeaker(null);
             }
+            else if (data.type === 'final_status') {
+              serverDeterminedStatus = data.value;
+            }
           } catch (e) {
+            // 잘린 JSON 데이터가 들어올 경우를 대비한 예외 처리
             console.error("JSON 파싱 에러:", e);
           }
         }
       }
 
-      // 3. 토론 결과 최종 판정 (20턴 종료 또는 합의 성공)
-      // 마지막 발언 내용에서 합의 키워드 추출
-      const isConsensus = 
-        currentContent.includes("최종 합의") || 
-        currentContent.includes("합의합니다") || 
-        currentContent.includes("단일화된 결론");
-
-      if (isConsensus) {
+      // 3. 토론 결과 최종 판정 메시지 출력
+      if (serverDeterminedStatus === 'consensus') {
         setMessages(prev => [
           ...prev, 
-          { 
-            role: 'assistant', 
-            content: "🏁 토론 종료: 캐릭터들이 상호 이해를 바탕으로 최종 합의에 도달했습니다." 
-          }
+          { role: 'assistant', content: "✅ 시스템: 캐릭터들이 최종 합의에 도달하여 토론을 성공적으로 마쳤습니다." }
         ]);
       } else {
         setMessages(prev => [
           ...prev, 
-          { 
-            role: 'assistant', 
-            content: "⚠️ 토론 종료: 20턴의 치열한 논쟁 끝에 최종 합의에 도달하지 못했습니다. (합의 실패)" 
-          }
+          { role: 'assistant', content: "⚠️ 시스템: 10턴의 논쟁 끝에 최종 합의에 도달하지 못하고 토론이 종료되었습니다." }
         ]);
       }
 
     } catch (e) {
       console.error("Stream Error:", e);
-      setMessages(prev => [...prev, { role: 'assistant', content: "❌ 연결 에러: 서버와의 통신이 원활하지 않습니다." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "❌ 에러: 서버 연결에 실패했습니다." }]);
     } finally {
       setIsDebating(false);
       setCurrentSpeaker(null);
