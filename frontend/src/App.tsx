@@ -83,7 +83,6 @@ function App() {
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
       let currentContent = "";
-      let lastSpeakerName = "";
 
       if (!reader) return;
 
@@ -101,8 +100,7 @@ function App() {
             const data = JSON.parse(line.replace("data: ", ""));
 
             if (data.type === 'speaker_start') {
-              currentContent = ""; 
-              lastSpeakerName = data.name;
+              currentContent = "";
               setCurrentSpeaker(data.name);
               setMessages(prev => [...prev, { role: 'assistant', name: data.name, content: "" }]);
             } 
@@ -169,12 +167,12 @@ function App() {
       return (
         <div className="space-y-3">
           {thought && (
-            <div className="flex items-start gap-2 text-[11px] text-slate-500 bg-amber-50/50 p-2 rounded-lg border border-amber-100">
-              <BrainCircuit size={12} className="mt-0.5 shrink-0 text-amber-600" />
-              <p className="italic">생각: {thought}</p>
+            <div className="flex items-start gap-2 text-sm text-amber-800 bg-amber-50 border border-amber-200 p-2.5 rounded-xl">
+              <BrainCircuit size={14} className="mt-0.5 shrink-0 text-amber-600" />
+              <p className="italic leading-snug">생각: {thought}</p>
             </div>
           )}
-          <p className="text-slate-800 text-base font-medium leading-relaxed">
+          <p className="text-slate-800 text-base leading-relaxed">
             {speech}
           </p>
         </div>
@@ -184,31 +182,31 @@ function App() {
     // 시스템 메시지 스타일링 (🏁 또는 ⚠️ 로 시작하는 경우)
     if (content.startsWith("🏁") || content.startsWith("✅")) {
         return (
-          <div className="flex items-center gap-2 text-blue-700 font-bold justify-center">
-            <CheckCircle2 size={16} /> {content}
+          <div className="flex items-center gap-2 text-emerald-700 font-bold justify-center bg-emerald-50 py-2 px-4 rounded-lg">
+            <CheckCircle2 size={18} /> {content}
           </div>
         );
     }
     if (content.startsWith("⚠️") || content.startsWith("❌")) {
         return (
-          <div className="flex items-center gap-2 text-red-600 font-bold justify-center">
-            <AlertCircle size={16} /> {content}
+          <div className="flex items-center gap-2 text-red-700 font-bold justify-center bg-red-50 py-2 px-4 rounded-lg">
+            <AlertCircle size={18} /> {content}
           </div>
         );
     }
 
-    return <p className="text-slate-600 text-sm text-center italic">{content}</p>;
+    return <p className="text-slate-500 text-sm text-center italic py-2 px-4">{content}</p>;
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8 text-slate-900 font-sans">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="min-h-screen bg-slate-100 p-4 md:p-8 text-slate-900 font-sans antialiased">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* 왼쪽 사이드바 */}
         <div className="lg:col-span-1 space-y-6">
-          <div className="bg-white p-6 rounded-3xl shadow-sm border border-blue-100">
-            <h2 className="text-lg font-bold mb-4 flex items-center gap-2 text-blue-700">
-              <Users size={20}/> 참가자 ({selectedSlugs.length}/5)
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2 text-blue-700">
+              <Users size={24}/> 참가자 ({selectedSlugs.length}/5)
             </h2>
             <div className="flex flex-wrap gap-2">
               {selectedSlugs.length === 0 ? (
@@ -217,10 +215,10 @@ function App() {
                 selectedSlugs.map(slug => {
                   const char = CHARACTER_LIST.find(c => c.slug === slug);
                   return (
-                    <span key={slug} className="pl-3 pr-2 py-1.5 bg-blue-600 text-white text-xs font-bold rounded-full flex items-center gap-1.5 shadow-sm">
+                    <span key={slug} className="pl-3 pr-2 py-1.5 bg-blue-600 text-white text-sm font-semibold rounded-full flex items-center gap-2 shadow-md">
                       {char?.name}
-                      <button onClick={() => toggleCharacter(slug)} className="hover:text-red-300">
-                        <XCircle size={14} />
+                      <button onClick={() => toggleCharacter(slug)} className="hover:text-red-400">
+                        <XCircle size={16} />
                       </button>
                     </span>
                   );
@@ -229,8 +227,8 @@ function App() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
-            <h2 className="text-lg font-bold mb-4">영입 가능 리스트</h2>
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+            <h2 className="text-xl font-bold mb-4">영입 가능 리스트</h2>
             <div className="grid grid-cols-1 gap-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
               {CHARACTER_LIST.map((char: Character) => {
                 const isSelected = selectedSlugs.includes(char.slug);
@@ -239,13 +237,13 @@ function App() {
                     key={char.slug}
                     disabled={isDebating}
                     onClick={() => toggleCharacter(char.slug)}
-                    className={`flex items-center justify-between p-4 rounded-2xl border-2 transition-all ${
+                    className={`flex items-center justify-between p-3 rounded-lg border-2 transition-all duration-200 ${
                       isSelected 
                       ? 'bg-blue-50 border-blue-500 shadow-sm' 
-                      : 'bg-white border-slate-50 hover:border-blue-200 hover:bg-slate-50'
+                      : 'bg-white border-slate-100 hover:border-blue-200 hover:bg-blue-50'
                     }`}
                   >
-                    <span className={`font-bold ${isSelected ? 'text-blue-700' : 'text-slate-600'}`}>
+                    <span className={`font-semibold ${isSelected ? 'text-blue-700' : 'text-slate-700'}`}>
                       {char.name}
                     </span>
                     {isSelected && <UserCheck size={20} className="text-blue-500" />}
@@ -255,11 +253,11 @@ function App() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
-            <h2 className="text-lg font-bold mb-4 flex items-center gap-2"><MessageSquare size={20}/> 토론 설정</h2>
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><MessageSquare size={24}/> 토론 설정</h2>
             <textarea 
               disabled={isDebating}
-              className="w-full p-4 border border-slate-100 bg-slate-50 rounded-2xl mb-4 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+              className="w-full p-3 border border-slate-200 bg-slate-50 rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 outline-none resize-none text-slate-700"
               placeholder="토론 주제 입력..."
               rows={3}
               value={topic}
@@ -268,7 +266,7 @@ function App() {
             <button 
               onClick={startDebate}
               disabled={isDebating || selectedSlugs.length < 2}
-              className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 disabled:bg-slate-200 flex items-center justify-center gap-2 shadow-lg"
+              className="w-full py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 disabled:bg-slate-200 disabled:text-slate-400 flex items-center justify-center gap-2 shadow-md transition-colors duration-200"
             >
               {isDebating ? (
                 <><Loader2 size={20} className="animate-spin" /> 토론 진행 중...</>
@@ -280,40 +278,40 @@ function App() {
         </div>
 
         {/* 오른쪽 메인: 토론 스테이지 */}
-        <div className="lg:col-span-2 bg-white rounded-3xl shadow-sm border border-slate-200 flex flex-col h-[85vh] overflow-hidden">
-          <div className="p-4 border-b border-slate-50 bg-slate-50/50 flex justify-between items-center px-8">
+        <div className="lg:col-span-2 bg-white rounded-xl shadow-lg border border-slate-200 flex flex-col h-[85vh] overflow-hidden">
+          <div className="p-4 border-b border-slate-200 bg-blue-50/50 flex justify-between items-center px-6">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-              <span className="text-xs font-black text-slate-400 tracking-widest uppercase">Live Debate</span>
+              <div className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse" />
+              <span className="text-sm font-black text-slate-500 tracking-widest uppercase">Live Debate</span>
             </div>
             {currentSpeaker && (
-              <span className="text-xs font-bold text-blue-600 animate-bounce">
+              <span className="text-base font-bold text-blue-600 animate-pulse">
                 🎤 {currentSpeaker} 발언 중...
               </span>
             )}
           </div>
 
-          <div className="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
             {messages.length === 0 && (
-              <div className="h-full flex flex-col items-center justify-center text-slate-300">
-                <MessageSquare size={48} className="mb-4 opacity-20" />
-                <p>토론을 시작하여 캐릭터들의 충돌을 지켜보세요.</p>
+              <div className="h-full flex flex-col items-center justify-center text-slate-400">
+                <MessageSquare size={56} className="mb-4 opacity-30" />
+                <p className="text-lg">토론을 시작하여 캐릭터들의 충돌을 지켜보세요.</p>
               </div>
             )}
             
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.name ? 'justify-start' : 'justify-center'} animate-in slide-in-from-bottom-4 duration-500`}>
-                <div className={`max-w-[90%] ${
+                <div className={`max-w-[85%] ${
                   msg.name 
-                  ? 'bg-white border border-slate-100 shadow-sm p-6 rounded-3xl rounded-tl-none' 
-                  : 'bg-slate-100 py-3 px-8 rounded-full border border-slate-200'
+                  ? 'bg-white border border-slate-100 shadow-md p-4 rounded-2xl rounded-tl-none' 
+                  : 'bg-slate-100 py-2 px-5 rounded-full border border-slate-200'
                 }`}>
                   {msg.name && (
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-black uppercase">
                         {msg.name[0]}
                       </div>
-                      <span className="font-black text-slate-900">{msg.name}</span>
+                      <span className="font-semibold text-slate-800 text-base">{msg.name}</span>
                     </div>
                   )}
                   {renderMessageContent(msg.content)}
